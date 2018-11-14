@@ -21,12 +21,11 @@ from alpha_vantage.techindicators import TechIndicators
 import matplotlib.pyplot as plt
 import statistics
 from sklearn.cluster import DBSCAN
-
-
-
-
-
 from bs4 import BeautifulSoup
+
+
+
+
 data=[]
 closeprizes=[]
 closeprizestemp=[]
@@ -39,16 +38,18 @@ for line in file:
     data.append(line)
 file.close()
 
-#zeilen aufsplitten und jeweils die closeprizes der liste anhängen
+#split lines aufsplitten and append closeprizes
 for i in data:
     temp=i.split(';')
     closeprizestemp.append(float(temp[3]))
 
 
 #spieglen sodass in [0] der aktuellste wert steht
+#mirroring 
 closeprizes=closeprizestemp[::-1]
 
 #MA berechnen
+#calculate moving average
 for j in range(0,100):
     three_days_ma=(closeprizes[j]+closeprizes[j+1]+closeprizes[j+2])/3
 
